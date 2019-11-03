@@ -13,7 +13,7 @@ const isAnagram = (word1, word2) => {
   if (Object.keys(obj1).length !== Object.keys(obj2).length)
       return false;
 
-  return !Object.entries(obj1).some(([key, value]) => obj2[key] !== value);
+  return Object.entries(obj1).every(([key, value]) => obj2[key] === value);
 };
 
 console.log('word', 'dowr:', isAnagram('word', 'dowr'));
