@@ -6,7 +6,7 @@ const numericalSort = (a, b) => a - b;
 
 const zipping = array => {
     const sorted = array.sort(numericalSort);
-    return sorted.slice(1).reduce((accum, current) => `${accum},${current}`, sorted[0])
+    return sorted.reduce((accum, current) => `${accum},${current}`)
 };
 
 const zippingJoin = array => {
