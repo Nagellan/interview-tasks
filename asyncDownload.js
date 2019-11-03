@@ -1,5 +1,5 @@
 /*
-Task: emulate downloading resources with bound throughput
+Task: emulate downloading resources with bounded throughput
  */
 
 const getFetchTime = () => 3000 + Math.random() * 7000;
