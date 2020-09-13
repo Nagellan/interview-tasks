@@ -7,7 +7,8 @@ const array = [
   { name: "height", value: 20 },
 ];
 
-const transform = (array) => {};
+const transform = (array) =>
+  array.reduce((prev, { name, value }) => ({ ...prev, [name]: value }), {});
 
 console.log(transform(array));
 
