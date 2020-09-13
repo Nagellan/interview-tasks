@@ -41,7 +41,23 @@ const runTests = (solution) => {
   console.log(obj.f === solution(obj).f);
 };
 
-const deepCopy = (obj) => {};
+const deepCopy = (elem) => {
+  if (elem instanceof Array) {
+    return [...elem].map((elemItem) => deepCopy(elemItem));
+  }
+
+  if (elem instanceof Function) {
+    return (...args) => elem.apply(this, args);
+  }
+
+  if (typeof elem === "object" && elem !== null)
+    return Object.entries(elem).reduce(
+      (prevElem, [key, value]) => ({ ...prevElem, [key]: deepCopy(value) }),
+      {}
+    );
+
+  return elem;
+};
 
 runTests(deepCopy);
 
@@ -63,21 +79,21 @@ const showSolutions = () => {
   const solution2 = (obj) => {
     if (obj instanceof Function) return (...args) => obj.apply(this, args);
 
-    if (obj instanceof Array) return [...obj].map((item) => deepCopy(item));
+    if (obj instanceof Array) return [...obj].map((item) => solution2(item));
 
     if (typeof obj !== "object" || !obj) return obj;
 
     const entries = Object.entries(obj);
     const resObj = {};
     for (const [key, value] of entries) {
-      resObj[key] = deepCopy(value);
+      resObj[key] = solution2(value);
     }
 
     return resObj;
   };
 
   runTests(solution1);
-  runTests(solution2);
+  // runTests(solution2);
 };
 
 showSolutions();
