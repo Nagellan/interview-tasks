@@ -2,9 +2,40 @@
  * Task: ([3, 2, 1, 5, 6, -1, 10]) => "-1,1-3,5-6,10"
  */
 
-const zipArray = (array) => {};
+const numSortCompareFn = (a, b) => a - b;
 
-console.log("[3, 2, 1, 5, 6, -1, 10] => ", zipArray([3, 2, 1, 5, 6, -1, 10]));
+const zipArray = (array) =>
+  [...array]
+    .sort(numSortCompareFn)
+    .reduce((resultArr, num) => {
+      // number OR array of numbers
+      const lastResultArrElem =
+        resultArr.length === 0 ? -Infinity : resultArr[resultArr.length - 1];
+
+      if (typeof lastResultArrElem === "number") {
+        if (num - lastResultArrElem === 1) {
+          return [...resultArr.slice(0, -1), [lastResultArrElem, num]];
+        } else {
+          return [...resultArr, num];
+        }
+      } else {
+        const lastOfTheLastNum =
+          lastResultArrElem[lastResultArrElem.length - 1];
+        if (num - lastOfTheLastNum === 1) {
+          return [...resultArr.slice(0, -1), [...lastResultArrElem, num]];
+        } else {
+          return [...resultArr, num];
+        }
+      }
+    }, [])
+    .map((elem) =>
+      typeof elem === "number" ? elem : `${elem[0]}-${elem[elem.length - 1]}`
+    )
+    .join(",");
+
+console.log(zipArray([]));
+console.log(zipArray([0]));
+console.log(zipArray([3, 2, 1, 5, 6, -1, 10]));
 console.log(zipArray([4, 6, 7, 8, 9, -1, 0, 1]));
 console.log(zipArray([1, 2, 3]));
 
@@ -62,4 +93,4 @@ const showSolutions = () => {
   console.log(solution3([1, 2, 3]));
 };
 
-showSolutions();
+// showSolutions();

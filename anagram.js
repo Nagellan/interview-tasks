@@ -83,4 +83,4 @@ const showSolutions = () => {
   console.log("word", "dowwr:", solution2("word", "dowwr"));
 };
 
-showSolutions();
+// showSolutions();

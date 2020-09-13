@@ -25,4 +25,4 @@ const showSolutions = () => {
   console.log(solution(array));
 };
 
-showSolutions();
+// showSolutions();
