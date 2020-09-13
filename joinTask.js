@@ -1,14 +1,21 @@
-/*
-Task: implement a function that get '*', 'c', 'b','i' as parameters and returns a string 'c*b*i'
+/**
+ * Task: implement a function that get '*', 'c', 'b','i' as parameters and returns a string 'c*b*i'
  */
 
-const joinTask = (concatValue, ...args) => args.join(concatValue);
+const joinTask = () => {};
 
-// OR
+console.log(joinTask("*", "c", "b", "i"));
 
-function getJoined() {
-    return [].slice.call(arguments, 1).join(arguments[0])
-}
+// Wrap/Hide this function's body using your IDE
+const showSolutions = () => {
+  const solution1 = (concatValue, ...args) => args.join(concatValue);
 
-console.log(joinTask('*', 'c', 'b', 'i'));
-console.log(getJoined('*', 'c', 'b', 'i'));
+  function solution2() {
+    return [].slice.call(arguments, 1).join(arguments[0]);
+  }
+
+  console.log(solution1("*", "c", "b", "i"));
+  console.log(solution2("*", "c", "b", "i"));
+};
+
+showSolutions();

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div id="root">
+        root
+        <span id="id1">id1</span>
+        <div id="id2">
+            id2
+            <div id="id3">id3</div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('click', ev => {
+            alert(ev.target.id || "Current element has not an id");
+        })
+    </script>
+    <style>
+        body {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        #root {
+            padding: 20px;
+            height: 600px;
+            width: 600px;
+            margin: auto;
+            margin-up: 100px;
+            display: flex;
+            flex-direction: column;
+            background: red;
+            align-content: center;
+            align-items: center;
+        }
+
+        #id1 {
+            text-align: center;
+            margin: auto;
+            height: 100px;
+            width: 50%;
+            background: lightblue;
+        }
+
+        #id2 {
+            text-align: center;
+            margin: auto;
+            height: 150px;
+            width: 50%;
+            background: green;
+        }
+
+        #id3 {
+            text-align: center;
+            margin: auto;
+            height: 100px;
+            width: 50%;
+            background: yellow;
+        }
+    </style>
+</body>
+
+</html>
