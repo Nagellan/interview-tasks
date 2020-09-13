@@ -1,11 +1,43 @@
 /**
- * Validate sequence of brackets
+ * Task: validate sequence of brackets
  */
 
 // first three - true, other - false
 const tests = ["((()))", "(()())()", "({}[()])", "()()(", "{{{][]}()}"];
 
-const validate = (sequence) => {};
+const validate = (sequence) => {
+  const seqArr = sequence.split("");
+  let stack = [];
+
+  seqArr.forEach((bracket) => {
+    if (/[([{]]/.test(bracket)) {
+      stack.push(bracket);
+    } else {
+      const stackHead = stack[stack.length - 1];
+      switch (bracket) {
+        case ")":
+          if (stackHead === "(") stack.pop();
+          break;
+
+        case "]":
+          if (stackHead === "[") stack.pop();
+          break;
+
+        case "}":
+          if (stackHead === "{") stack.pop();
+          break;
+
+        default:
+          break;
+      }
+    }
+  });
+
+  return stack.length === 0;
+};
+
+const runTests = (validation, tests) =>
+  tests.reduce((result, test) => `${result}\n${test}: ${validation(test)}`, "");
 
 console.log(runTests(validate, tests));
 
@@ -44,12 +76,6 @@ const showSolutions = () => {
     }
     return stack.length === 0;
   };
-
-  const runTests = (validation, tests) =>
-    tests.reduce(
-      (result, test) => `${result}\n${test}: ${validation(test)}`,
-      ""
-    );
 
   console.log(runTests(solution1, tests));
   console.log(runTests(solution2, tests));
