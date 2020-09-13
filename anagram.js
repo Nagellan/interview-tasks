@@ -2,7 +2,34 @@
  * Task: check if the word is anagram of another word
  */
 
-const isAnagram = (word, otherWord) => {};
+const countLetters = (word) =>
+  word
+    .split("")
+    .reduce(
+      (result, letter) => ({ ...result, [letter]: (result[letter] || 0) + 1 }),
+      {}
+    );
+
+const areArraysEqual = (arr1, arr2) =>
+  arr1.every((key) => arr2.includes(key)) &&
+  arr2.every((key) => arr1.includes(key));
+
+const areObjectsEqual = (obj1, obj2) => {
+  const obj1Keys = Object.keys(obj1);
+  const obj2Keys = Object.keys(obj2);
+  if (!areArraysEqual(obj1Keys, obj2Keys)) return false;
+  return obj1Keys.reduce(
+    (result, key) => result || obj2[key] === obj1[key],
+    false
+  );
+};
+
+const isAnagram = (word1, word2) => {
+  if (word1.length !== word2.length) return false;
+  const word1LettersCount = countLetters(word1);
+  const word2LettersCount = countLetters(word2);
+  return areObjectsEqual(word1LettersCount, word2LettersCount);
+};
 
 console.log(isAnagram("123", "321"));
 console.log(isAnagram("122", "321"));
