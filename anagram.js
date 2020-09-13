@@ -57,11 +57,3 @@ const showSolutions = () => {
 };
 
 showSolutions();
-
-
-// Wrap/Hide this function's body using your IDE
-const showSolutions = () => {
-
-}
-
-showSolutions()
