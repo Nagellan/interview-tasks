@@ -2,7 +2,7 @@
  * Task: implement a function that get '*', 'c', 'b','i' as parameters and returns a string 'c*b*i'
  */
 
-const joinTask = () => {};
+const joinTask = (op, ...letters) => letters.join(op);
 
 console.log(joinTask("*", "c", "b", "i"));
 
