@@ -2,9 +2,12 @@
  * Task: print N-th solution number
  */
 
-const fibonacci = (num) => {};
+const fibonacci = (num) => {
+  if (num < 2) return num;
+  return fibonacci(num - 1) + fibonacci(num - 2);
+};
 
-for (let i = 1; i < 20; i++) console.log(i, ":", fibonacci(i));
+for (let i = 0; i < 20; i++) console.log(i, ":", fibonacci(i));
 
 // Wrap/Hide this function's body using your IDE
 const showSolutions = () => {
@@ -13,7 +16,7 @@ const showSolutions = () => {
     return solution(num - 1, accum, pre + accum);
   };
 
-  for (let i = 1; i < 20; i++) console.log(i, ":", solution(i));
+  for (let i = 0; i < 20; i++) console.log(i, ":", solution(i));
 };
 
 showSolutions();
